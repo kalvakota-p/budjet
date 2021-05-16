@@ -2,7 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Install') {
-      steps { sh 'sudo npm install' }
+      steps { sh 'npm install' }
     }
  
     stage('Test') {
