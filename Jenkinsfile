@@ -1,6 +1,12 @@
 pipeline {
-  agent any
-  tools {nodejs "nodejs"}
+  agent {
+    docker { image 'node:latest' }
+  }
+  stages {
+    stage('Install') {
+      steps { sh 'npm install' }
+    }
+ 
     stage('Test') {
       parallel {
         stage('Static code analysis') {
@@ -16,3 +22,4 @@ pipeline {
       steps { sh 'npm run-script build' }
     }
   }
+}
