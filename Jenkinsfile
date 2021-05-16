@@ -1,23 +1,19 @@
 pipeline {
   agent any
+  stage('Checkout SCM') {
+    git branch: 'budjetMain', url: 'git@github.com:kalvakota-p/budjet.git'
+  }
   stages {
-    stage('Install') {
-      steps { sh 'npm install' }
+    stage('Install node modules') {
+      sh 'npm install' 
     }
  
     stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
+      sh 'npm run test-headless'
     }
  
     stage('Build') {
-      steps { sh 'npm run-script build' }
+      sh 'npm run build'
     }
   }
 }
