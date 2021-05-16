@@ -16,4 +16,3 @@ pipeline {
       steps { sh 'npm run-script build' }
     }
   }
-}
