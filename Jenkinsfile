@@ -1,10 +1,6 @@
 pipeline {
   agent any
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
-    }
- 
+  tools {nodejs "nodejs"}
     stage('Test') {
       parallel {
         stage('Static code analysis') {
